@@ -1,0 +1,22 @@
+import plantas.*
+import parcelas.*
+test "testParcelas" {
+	const parce1=new Parcela(ancho=10,largo=1,hsSol=10)
+	
+	assert.equals(10,parce1.superficie())
+	assert.equals(5,parce1.cantMaxima())
+	
+	const soja1= new Soja(altura= 2)
+	const soja2= new Soja(altura= 2)
+	const soja3= new Soja(altura= 2)
+	const soja4= new Soja(altura= 2)
+	const soja5= new Soja(altura= 2)
+	const soja6= new Soja(altura= 2)
+	parce1.plantarUnaPlanta(soja1)
+	parce1.plantarUnaPlanta(soja2)
+	parce1.plantarUnaPlanta(soja3)
+	parce1.plantarUnaPlanta(soja4)
+	parce1.plantarUnaPlanta(soja5)
+	parce1.plantarUnaPlanta(soja6)
+
+}

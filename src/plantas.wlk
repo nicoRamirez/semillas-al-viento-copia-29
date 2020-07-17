@@ -16,6 +16,7 @@ class Planta {
 	method toleraUnPocoMas(cant){
 		return (self.tolerancia() - cant).abs() > 2
 	}
+	method esIdeal(parce)
 }
 class Menta inherits Planta{
 	
@@ -25,12 +26,16 @@ class Menta inherits Planta{
 	override method espacioOcupado(){
 		return altura * 3
 	}
+	override method esIdeal(parce){
+		return parce.superficie() > 6
+	}
 }
 class Soja inherits Planta{
 	
 	override method tolerancia(){
 		var tole=0
-		 if (self.pequenia()){tole=6} if(self.mediana()){tole=8}else{tole =12}  return tole
+		 if (self.pequenia()){tole=6} if(self.mediana()){tole=8}
+		 else{tole =12}  return tole
 	}
 	method pequenia(){
 		return altura < 0.5
@@ -47,6 +52,9 @@ class Soja inherits Planta{
 	override method espacioOcupado(){
 		return altura / 2
 	}	
+	override method esIdeal(parce){
+		return self.tolerancia() == parce.hsSol()
+	}
 } 
 class Quinoa inherits Planta{
 	var property espacioOcupado=0
@@ -64,10 +72,16 @@ class Quinoa inherits Planta{
 	override method daNuevasSemillas(){
 	return 	super() or self.anoDeObtencion() < 2005
 	}
+	override method esIdeal(parce){
+		return parce.sinPlantasGrandes()
+	}
 }
  class Transgenica inherits Soja{
  	override method daNuevasSemillas(){
  	return sinSemilla.tieneSemilla()
+ 	}
+ 	override method esIdeal(parce){
+ 		return parce.totalDePlantas() == 1
  	}
  }
  class Peperina inherits Menta{
